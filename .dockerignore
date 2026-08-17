@@ -1,0 +1,17 @@
+.git
+.github
+**/.venv
+**/__pycache__
+**/.pytest_cache
+backend/.data
+backend/uploads
+mobile/build
+mobile/.dart_tool
+mobile/.idea
+docs
+*.md
+.env
+.env.*
+infra/nginx/certs
+infra/nginx/rendered
+infra/nginx/www

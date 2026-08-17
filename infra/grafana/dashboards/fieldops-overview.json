@@ -1,0 +1,47 @@
+{
+  "id": null,
+  "uid": "fieldops-overview",
+  "title": "FieldOps AI — Operations",
+  "timezone": "browser",
+  "schemaVersion": 39,
+  "version": 1,
+  "refresh": "10s",
+  "panels": [
+    {
+      "type": "stat",
+      "title": "HTTP requests",
+      "gridPos": { "h": 4, "w": 6, "x": 0, "y": 0 },
+      "targets": [{ "expr": "sum(rate(http_requests_total[5m]))", "refId": "A" }]
+    },
+    {
+      "type": "stat",
+      "title": "Inspection submissions",
+      "gridPos": { "h": 4, "w": 6, "x": 6, "y": 0 },
+      "targets": [{ "expr": "sum(inspection_submission_total)", "refId": "A" }]
+    },
+    {
+      "type": "stat",
+      "title": "AI requests",
+      "gridPos": { "h": 4, "w": 6, "x": 12, "y": 0 },
+      "targets": [{ "expr": "sum(ai_requests_total)", "refId": "A" }]
+    },
+    {
+      "type": "stat",
+      "title": "AI failures",
+      "gridPos": { "h": 4, "w": 6, "x": 18, "y": 0 },
+      "targets": [{ "expr": "sum(ai_request_failures)", "refId": "A" }]
+    },
+    {
+      "type": "timeseries",
+      "title": "Request duration",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 4 },
+      "targets": [{ "expr": "histogram_quantile(0.95, sum(rate(http_request_duration_seconds_bucket[5m])) by (le, path))", "refId": "A" }]
+    },
+    {
+      "type": "timeseries",
+      "title": "AI latency",
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 4 },
+      "targets": [{ "expr": "histogram_quantile(0.95, sum(rate(ai_request_latency_seconds_bucket[5m])) by (le))", "refId": "A" }]
+    }
+  ]
+}
